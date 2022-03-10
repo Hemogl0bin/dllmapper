@@ -35,7 +35,7 @@ void FixImage(ImageFixData *imageFixData)
     /*
     * Relocations
     */
-    for(; reinterpret_cast<unsigned char*>(imageBaseRelocation) < imageFixData->imageBase + ntHeader->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_BASERELOC].Size
+    for(; reinterpret_cast<unsigned char*>(imageBaseRelocation) < reinterpret_cast<unsigned char*>(imageBaseRelocation) + ntHeader->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_BASERELOC].Size
         ; *reinterpret_cast<unsigned char**>(&imageBaseRelocation) += imageBaseRelocation->SizeOfBlock)
     {
         int numRelocations = (imageBaseRelocation->SizeOfBlock - sizeof(IMAGE_BASE_RELOCATION)) / sizeof(WORD);
